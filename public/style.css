@@ -1,111 +1,64 @@
-body {
-    box-sizing: border-box;
+* {
     margin: 0;
     padding: 0;
+}
+
+body {
     font-family: Helvetica, Arial, sans-serif;
     overflow: hidden;
-    min-height: 100vh;
-    min-width: 100vw;
-    /* background: rgb(239, 238, 238); */
-    background: rgba(188, 105, 138, 0.5);
-    background-image: radial-gradient(
-        circle at bottom left,
-        rgba(255, 255, 0, 0.9),
-        rgba(255, 255, 0, 0) 70%
-      ),
-      radial-gradient(circle at top left, rgba(255, 0, 0, 1), rgba(255, 0, 0, 0) 70%),
-      radial-gradient(circle at center right, rgba(255, 0, 255, 0.8), rgba(255, 0, 255, 0) 50%);
-    background-size: 200% 200%;
-    animation: movement 30s ease infinite alternate-reverse;
-  }
-  
-  @keyframes movement {
-    0% {
-      background-position: 0% 0%;
-    }
-    25% {
-      background-position: 50% 0%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    75% {
-      background-position: 50% 100%;
-    }
-    100% {
-      background-position: 100% 100%;
-    }
-  }
-  
-  main {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    min-width: 100vw;
+    background-color: rgb(255, 224, 124);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  section {
+}
+
+main {  
     width: 20rem;
     height: 30rem;
-    /* background: rgb(239, 238, 238); */
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(1rem);
+    background-color: rgb(255, 172, 47);
     border-radius: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0.8rem 0.8rem 1.6rem 0 rgba(206, 205, 205, 0.5),
-      -0.8rem -0.8rem 1.6rem 0 rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  section h1 {
-    margin: 0;
-    padding: 0;
-    padding-top: 1rem;
-    font-weight: lighter;
+    justify-content: space-between;
+}
+
+h1 {
+    padding: 1rem 0;
     text-transform: uppercase;
     font-size: 1rem;
-  }
-  
-  section h1 span {
-    font-size: 0.5rem;
-    display: inline-block;
-    width: 4.5rem;
-    color: magenta;
-    text-transform: lowercase;
-  }
-  
-  section ul {
-    margin: 0;
-    padding: 0.2em;
-    list-style-type: none;
-    flex-grow: 2;
-    width: 18em;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+ul {
+    height: 100%;
+    width: 90%;
     overflow-y: scroll;
-  }
-  
-  ::-webkit-scrollbar {
-    background: transparent;
-  }
-  
-  section ul > li {
+}
+
+ul > li {
+    background-color: rgb(204, 116, 0);
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
-  }
-  
-  section form {
-    margin: 0 0 1rem 0;
-    padding: 0;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    border-radius: 5px;
+    margin-bottom: .5rem;
+} 
+
+form {
+    margin-bottom: 1rem;
     width: 18rem;
     height: 2rem;
     display: flex;
-  }
-  
-  section form input[type='text'] {
+}
+
+form input[type='text'] {
     margin: 0;
     padding: 0 1rem;
     border: none;
@@ -118,9 +71,9 @@ body {
     border: 0;
     opacity: 80%;
     outline: none;
-  }
-  
-  section form > button {
+}
+
+form > button {
     padding: 0 0.6rem 0 0.4rem;
     width: 2rem;
     background: rgb(239, 238, 238);
@@ -131,21 +84,21 @@ body {
     opacity: 80%;
     outline: none;
     transition: 0.2s;
-  }
-  
-  section form > button span {
+}
+
+form > button span {
     display: none;
-  }
-  
-  section form > button::after {
+}
+
+form > button::after {
     content: '⇒';
-  }
-  
-  section form > button:hover {
+}
+
+form > button:hover {
     padding-left: 1rem;
-  }
-  
-  section form > button:active {
+}
+
+form > button:active {
     padding-left: 1rem;
     color: red;
-  }
+}

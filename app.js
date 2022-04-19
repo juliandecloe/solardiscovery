@@ -9,17 +9,17 @@ const port = process.env.PORT || 6969
 app.use(express.static(path.resolve('public')))
 
 io.on('connection', (socket) => {
-  console.log('a user connected')
+    console.log('a user connected')
 
-  socket.on('message', (message) => {
-    io.emit('message', message)
-  })
+    socket.on('message', (message) => {
+        io.emit('message', message)
+    })
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
-  })
+    socket.on('disconnect', () => {
+        console.log('user disconnected')
+    })
 })
 
 http.listen(port, () => {
-  console.log('listening on port ', port)
+    console.log('listening on port ', port)
 })
