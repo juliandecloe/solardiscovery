@@ -1,0 +1,28 @@
+{
+  "name": "real-time-web",
+  "version": "1.0.0",
+  "description": "It's real time web my boy",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliandecloe/real-time-web-2122.git"
+  },
+  "author": "Julian de Cloe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliandecloe/real-time-web-2122/issues"
+  },
+  "homepage": "https://github.com/juliandecloe/real-time-web-2122#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "socket.io": "^4.4.1"
+  }
+}
