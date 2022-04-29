@@ -8,10 +8,10 @@ const port = process.env.PORT || 6969
 
 app.use(express.static(path.resolve('public')))
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
     console.log('a user connected')
 
-    socket.on('message', (message) => {
+    socket.on('message', message => {
         io.emit('message', message)
     })
 
@@ -23,3 +23,4 @@ io.on('connection', (socket) => {
 http.listen(port, () => {
     console.log('listening on port ', port)
 })
+
