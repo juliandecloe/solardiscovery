@@ -52,28 +52,30 @@ function filterPlanets(data) {
 function renderPlanets(data) {
     data.forEach(asset => {
         document.body.insertAdjacentHTML('afterbegin', `
-            <img id="${asset.englishName}" src="img/${asset.englishName}.svg">
+            <img id="${asset.englishName}" src="img/planets/${asset.englishName}.svg">
         `);
-        document.querySelector('img').style.setProperty('width', (asset.meanRadius / 1000) + 'px');
-        document.querySelector('img').style.setProperty('left', (asset.perihelion / 10000) + 'px');
     });
     calculateBodysize(data);
 }
 
 function calculateBodysize(data) {
     const bodyTotal1 = data.reduce((accumulator, object) => {
-        return accumulator + object.perihelion / 10000;
+        return accumulator + object.perihelion / 1000;
     }, 0);
     const bodyTotal2 = data.reduce((accumulator, object) => {
-        return accumulator + object.meanRadius / 1000 * 40;
+        return accumulator + object.meanRadius / 2;
     }, 0);
     bodyTotal = bodyTotal1 + bodyTotal2;
     document.body.style.setProperty('width', bodyTotal + 1000 + 'px');
     document.body.style.setProperty('height', bodyTotal + 1000 + 'px');
     data.forEach(asset => {
         document.querySelectorAll(`#${asset.englishName}`).forEach(img => {
-            img.style.setProperty('left', (document.body.offsetWidth / 2) + (asset.perihelion / 10000) + 'px');
+            img.style.setProperty('left', (document.body.offsetWidth / 2) + (data[8].meanRadius / 4) + (asset.perihelion / 1000) + 'px');
+            img.style.setProperty('width', (asset.meanRadius / 2) + 'px');
         })
+        const sunElement = document.getElementById('Sun');
+        sunElement.style.setProperty('left', (document.body.offsetWidth / 2) - (sunElement.offsetWidth / 2) + 'px');
     });
-    window.scrollTo(document.body.offsetWidth / 2, document.body.offsetHeight / 2);
+    const earthElement = document.getElementById('Earth');
+    window.scrollTo(earthElement.offsetLeft + (earthElement.offsetWidth / 4), earthElement.offsetTop + (earthElement.offsetHeight));
 }

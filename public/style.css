@@ -6,19 +6,21 @@
 body {
     background-color: black;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     background-image: url(img/stars.png);
     background-size: 800px;
+    scroll-behavior: smooth;
 }
 
 img {
-    transform: scale(40);
     position: absolute;
 }
 
-img:first-child {
-    margin-right: 15000px;
+.rocket {
+    position: fixed;
+    top: calc(50vh - 5rem);
+    left: calc(50vw - 5rem);
+    width: 10rem;
 }
 
 /* main {  
