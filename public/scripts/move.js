@@ -1,25 +1,29 @@
 let rocketUp, rocketDown;
 
-document.addEventListener('keydown', event => {
-    if (event.repeat) { 
-		return; 
-	} 
-	if (event.keyCode === 'ArrowUp') {
+function activateTravel(event) {
+    if(event.repeat) {
+        return;
+    }
+	if (event.key === 'ArrowUp') {
+        if(rocketUp > 1) {
+            clearTimeout(rocketUp)
+        }
         rocketUp = setTimeout(function() {
-            window.scrollY++
-        }, 10)
+            let y = window.scrollY - 2;
+            window.scrollTo(window.scrollX, y)
+            activateTravel(event);
+        }, 1)
+    }
+}
+
+function deactivateTravel(event) {
+    if (event.key === 'ArrowUp') {
+        clearTimeout(rocketUp)
 	}
-	if (event.keyCode === 'ArrowDown') {
-		rocketDown = setTimeout(function() {
-            window.scrollY--
-        }, 10)
-	}
-});
-document.addEventListener('keyup', event => {
-    if (event.keyCode === 'ArrowUp') {
-		clearTimeout(rocketUp);
-	}
-	if (event.keyCode === 'ArrowDown') {
-		clearTimeout(rocketDown);
-	}
-});
+	// if (event.key === 'ArrowDown') {
+	// 	clearTimeout(rocketDown);
+	// }
+}
+
+document.addEventListener('keydown', activateTravel);
+document.addEventListener('keyup', deactivateTravel);
