@@ -34,7 +34,7 @@ function fetchPlanets() {
     fetch('https://api.le-systeme-solaire.net/rest/bodies/')
         .then(response => response.json())
         .then(data => {
-            filterPlanets(data);   
+            filterPlanets(data);
         });
 }
 
@@ -42,7 +42,7 @@ function filterPlanets(data) {
     sunData = data.bodies.find(asset => asset.englishName === 'Sun');
     data = data.bodies.filter(asset => asset.isPlanet);
     data.push(sunData)
-    data.sort(function(a, b) {
+    data.sort(function (a, b) {
         return b.perihelion - a.perihelion;
     });
     console.log(data)

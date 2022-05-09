@@ -10,6 +10,7 @@ body {
     background-image: url(img/stars.png);
     background-size: 800px;
     scroll-behavior: smooth;
+    overflow: hidden;
 }
 
 img {
@@ -21,6 +22,20 @@ img {
     top: calc(50vh - 5rem);
     left: calc(50vw - 5rem);
     width: 10rem;
+}
+
+p {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom: 2rem;
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-shadow: 0 0 12px black;
+    z-index: 999;
+    opacity: .5;
 }
 
 /* main {  
