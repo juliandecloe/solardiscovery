@@ -1,33 +1,3 @@
-// let socket = io();
-// let messages = document.querySelector('main ul');
-// let input = document.querySelector('input');
-
-// document.querySelector('form').addEventListener('submit', event => {
-//     event.preventDefault();
-//     if (input.value) {
-//         socket.emit('message', input.value);
-//         input.value = '';
-//     }
-// });
-
-// socket.on('message', message => {
-//     messages.appendChild(Object.assign(document.createElement('li'), {
-//         textContent: message
-//     }));
-//     messages.scrollTop = messages.scrollHeight;
-// });
-
-// const sendBtn = document.querySelector('form > button');
-
-// function sendMsg() {
-//     sendBtn.classList.add('send');
-//     setTimeout(() => {
-//         sendBtn.classList.remove('send')
-//     }, 1000);
-// }
-
-// sendBtn.addEventListener('click', sendMsg);
-
 fetchPlanets();
 
 function fetchPlanets() {
@@ -52,7 +22,7 @@ function filterPlanets(data) {
 function renderPlanets(data) {
     data.forEach(asset => {
         document.body.insertAdjacentHTML('afterbegin', `
-            <img id="${asset.englishName}" src="img/planets/${asset.englishName}.svg">
+            <img class="planet" id="${asset.englishName}" src="img/planets/${asset.englishName}.svg">
         `);
     });
     calculateBodysize(data);

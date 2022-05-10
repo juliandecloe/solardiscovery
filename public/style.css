@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 body {
@@ -13,15 +14,80 @@ body {
     overflow: hidden;
 }
 
-img {
+.planet {
     position: absolute;
 }
 
-.rocket {
-    position: fixed;
-    top: calc(50vh - 5rem);
-    left: calc(50vw - 5rem);
+h2 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: .5rem;
+}
+
+ul {
+    color: white;
+    list-style: none;
+}
+
+li {
+    margin-bottom: .5rem;
+}
+
+.rocketWrap {
+    position: absolute;
     width: 10rem;
+    height: 15rem;
+    z-index: 999;
+}
+
+h3 {
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    z-index: 999;
+    opacity: .8;
+    margin-bottom: 1rem;
+}
+
+.rocket {
+    width: 10rem;
+}
+
+header {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+}
+
+main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+main form {
+    position: fixed;
+    width: 40vw;
+}
+
+main input {
+    width: 100%;
+    height: 1.5rem;
+    padding: 5px;
+    border: none;
+}
+
+main form button {
+    width: 100%;
+    background: none;
+    
 }
 
 p {
@@ -30,100 +96,10 @@ p {
     width: 100%;
     bottom: 2rem;
     color: white;
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: .1rem;
     text-shadow: 0 0 12px black;
     z-index: 999;
     opacity: .5;
 }
-
-/* main {  
-    width: 20rem;
-    height: 30rem;
-    background-color: rgb(255, 255, 255);
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    overflow: hidden;
-}
-
-h1 {
-    padding: 1rem 0;
-    text-transform: uppercase;
-    font-size: 1rem;
-    width: 100%;
-    background-color:rgb(75, 132, 255);
-    color: white;
-    text-align: center;
-}
-
-ul {
-    height: 100%;
-    width: 90%;
-    overflow-y: scroll;
-    padding: 1rem;
-}
-
-ul > li {
-    background-color: rgb(223, 238, 245);
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    overflow: hidden;
-    overflow-wrap: break-word;
-    border-radius: 5px;
-    margin-bottom: .5rem;
-} 
-
-form {
-    width: 100%;
-    height: 4rem;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: .8rem;
-    box-sizing: border-box;
-    background-color: rgb(75, 132, 255);
-}
-
-form input[type='text'] {
-    margin: 0;
-    padding: 0 .5rem;
-    border: none;
-    width: 85%;
-    height: 100%;
-    flex-grow: 2;
-    background-color:rgb(223, 238, 245);
-    outline: none;
-    border-radius: 2rem;
-}
-
-form > button {
-    padding-left: .8rem;
-    width: 15%;
-    height: 100%;
-    background: none;
-    border: none;
-    outline: none;
-    transition: 0.2s;
-    cursor: pointer;
-    color: white;
-    font-weight: 800;
-    display: grid;
-    place-items: center;
-}
-
-form > button img {
-    width: 1.5rem;
-}
-
-form > button:hover {
-    transform: translateX(5px);
-}
-
-.send, .send:hover {
-    transform: translateX(25px);
-    opacity: 0;
-} */

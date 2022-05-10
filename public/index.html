@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,22 @@
     <link rel="icon" href="img//planets/Sun.svg">
     <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
+    <header>
+        <h2>Coördinates</h2>
+        <ul>
+            <li>x: 0</li>
+            <li>y: 0</li>
+        </ul>
+    </header>
+    <main>
+        <form class="username-form">
+            <label for="username-input">Choose username</label>
+            <input id="username-input" placeholder="Username"></input>
+            <button>Join Game</button>
+        </form>
+    </main>
     <!-- <main>
         <h1>The Chat</h1>
         <ul></ul>
@@ -17,9 +33,9 @@
             <button><img src="img/send.svg" alt="Send button"></button>
         </form>
     </main> -->
-    <img class="rocket" src="img/rocket.gif" alt="A cool black with red rocket flying through space">
     <p>Press space to toggle flying!</p>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/script.js"></script>
     <script src="/scripts/generateworld.js"></script>
     <script src="/scripts/move.js"></script>
 </body>
