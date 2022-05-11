@@ -1,5 +1,4 @@
 <%- include('./partials/head') %>
-
 <header>
     <h2>Coördinates</h2>
     <ul>
@@ -10,16 +9,28 @@
 <main>
     <% data.forEach(asset => { %>
     <img class="planet" id="<%= asset.englishName %>" src="img/planets/<%= asset.englishName %>.svg">
+    <div id="<%= asset.englishName %>">
+        <img src="img/planets/<%= asset.englishName %>.svg">
+        <h3><%= asset.englishName %></h3>
+    </div>
     <% }) %>
-    <section>
-        <img src="img/planets/Sun.svg" alt="The sun with its orange and red lava looking colors">
-        <h1>SOLAR DISCOVERY</h1>
+    <div class="startmenu">
+        <section>
+            <img src="img/planets/Sun.svg" alt="The sun with its orange and red lava looking colors">
+            <h1>SOLAR DISCOVERY</h1>
+        </section>
+        <form class="username-form">
+            <label for="username-input">Choose username</label>
+            <input maxlength="25" id="username-input" name="username" placeholder="Username"></input>
+            <button>Join Game</button>
+        </form>
+    </div>
+    <% users.forEach(user => { %>
+    <section id="<%= user.id %>" class="rocketWrap">
+        <h3><%= user.username %></h3>
+        <img class="rocket" src="img/rocket.gif" alt="A cool black with red rocket flying through space">
     </section>
-    <form class="username-form">
-        <label for="username-input">Choose username</label>
-        <input maxlength="25" id="username-input" name="username" placeholder="Username"></input>
-        <button>Join Game</button>
-    </form>
+    <% }) %>
 </main>
 <footer>
     <p>Press space to toggle flying!</p>

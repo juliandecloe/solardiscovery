@@ -13,6 +13,7 @@ app.set('views', 'views');
 app.use(express.static(path.resolve('public')));
 
 let newData;
+let userList = [];
 
 app.get('/', (req, res) => {
     fetch('https://api.le-systeme-solaire.net/rest/bodies/')
@@ -24,10 +25,11 @@ app.get('/', (req, res) => {
             data.sort(function (a, b) {
                 return b.perihelion - a.perihelion;
             });
-            data.reverse()
+            data.reverse();
             newData = data;
             res.render('index', {
-                data: data
+                data: data,
+                users: userList
             })
         })
         .catch(error => console.log(error))
@@ -36,10 +38,16 @@ app.get('/', (req, res) => {
 io.on('connection', function (socket) {
     socket.emit('data', newData);
     socket.on('new user', username => {
-        io.emit("new user", username);
+        let object = {username: username, id: socket.id};
+        userList.push(object);
+        io.emit("new user", object);
     })
     socket.on('position', pos => {
         io.emit("position", pos);
+    })
+    socket.on('disconnect', () => {
+        io.emit('user left', {id: socket.id})
+        userList = userList.filter(user => user.id !== socket.id );
     })
 });
 
