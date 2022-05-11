@@ -1,5 +1,6 @@
-let socket = io();
+
 const userForm = document.querySelector('.username-form');
+const toggleHint = document.querySelector('p');
 let usernameInput;
 
 userForm.addEventListener('submit', e => {
@@ -8,12 +9,13 @@ userForm.addEventListener('submit', e => {
     if (usernameInput.length > 0) {
         socket.emit('new user', usernameInput);
         userForm.remove();
+        toggleHint.style.setProperty('display', 'block');
+        document.querySelector('main').style.setProperty('position', 'static');
     }
 });
 
 socket.on('new user', username => {
-    console.log(username)
-    console.log(`✋ ${username} has joined the chat! ✋`);
+    console.log(`${username} has joined! ✋`);
     document.querySelector('main').insertAdjacentHTML('beforeend', `
         <section id="${username}" class="rocketWrap">
             <h3>${username}</h3>
@@ -48,7 +50,6 @@ socket.on('new user', username => {
     //===== MOVE ON MOUSE =====//
 
     let mX, mY, moveTimer, toggleMove;
-    const toggleHint = document.querySelector('p');
     const coordsTexts = document.querySelectorAll('header li');
 
     document.addEventListener("mousemove", e => {
@@ -85,7 +86,7 @@ socket.on('new user', username => {
                 toggleMove = true;
             } else {
                 clearInterval(moveTimer);
-                toggleHint.style.setProperty('display', '');
+                toggleHint.style.setProperty('display', 'block');
                 toggleMove = false;
             }
         }
