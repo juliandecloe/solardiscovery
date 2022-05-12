@@ -1,6 +1,8 @@
 let socket = io();
+let planetData;
 
 socket.on('data', data => {
+    planetData = data;
     console.log(data)
     generateWorld(data);
 });
@@ -16,17 +18,20 @@ function generateWorld(data) {
     document.body.style.setProperty('width', bodyTotal + 1000 + 'px');
     document.body.style.setProperty('height', bodyTotal + 1000 + 'px');
     data.forEach(asset => {
-        let planet = document.querySelector(`img#${asset.englishName}`)
+        let planet = document.querySelector(`.planet#${asset.englishName}`)
         planet.style.setProperty('left', (document.body.offsetWidth / 2) + (data[0].meanRadius / 4) + (asset.perihelion / 1000) + 'px');
         planet.style.setProperty('width', (asset.meanRadius / 2) + 'px');
-        const sunElement = document.querySelector('#Sun');
+        const sunElement = document.querySelector('.planet#Sun');
         sunElement.style.setProperty('left', (document.body.offsetWidth / 2) - (sunElement.offsetWidth / 2) + 'px');
-        pinPoints(asset);
+        let xOrigin = planet.offsetLeft - (sunElement.offsetLeft + sunElement.offsetWidth / 2);
+        let yOrigin = planet.offsetTop - (sunElement.offsetTop + sunElement.offsetHeight / 2);
+        // socket.on('planet position', planet => {
+        //     planet.planet.style.setProperty('left', planet.x + 'px');
+        //     planet.planet.style.setProperty('top', planet.y + 'px');
+        // })
+        planet.style.setProperty('transform-origin', xOrigin + 'px ' + yOrigin + 'px');
+        planet.style.setProperty('animation', `rotate ${asset.sideralOrbit * 1000}s linear infinite`);
     });
-}
-
-function pinPoints(asset) {
-    document.querySelector('div#' + asset.englishName)
 }
 
 const userForm = document.querySelector('.username-form');
@@ -53,10 +58,9 @@ socket.on('new user', user => {
         <img class="rocket" src="img/rocket.gif" alt="A cool black with red rocket flying through space">
     </section>
     `);
-
     document.querySelectorAll('.rocketWrap').forEach(rocket => rocket.style.setProperty('display', 'block'));
 
-    const earthElement = document.querySelector('#Earth');
+    const earthElement = document.querySelector('.planet#Earth');
     window.scrollTo(earthElement.offsetLeft + (earthElement.offsetWidth / 4), earthElement.offsetTop + (earthElement.offsetHeight / 2));
 
     const rocketWrap = document.querySelector(`#${socket.id}`);
@@ -135,3 +139,35 @@ socket.on('new user', user => {
         document.querySelector(`#${user.id}`).remove()
     });
 });
+
+setInterval(() => {
+    planetPinPointer();
+}, 10)
+
+function planetPinPointer() {
+    planetData.forEach(asset => {  
+        let pinPoint = document.querySelector('.pinpoint#' + asset.englishName);
+        let planet = document.querySelector(`.planet#${asset.englishName}`);
+        let rectPlanet = planet.getBoundingClientRect();
+        pinPoint.style.setProperty('left', rectPlanet.left + window.scrollX + planet.offsetWidth / 2 + 'px');
+        pinPoint.style.setProperty('top', rectPlanet.top + window.scrollY + planet.offsetHeight / 2 + 'px');
+        let rectPin = pinPoint.getBoundingClientRect();
+        if(rectPin.top < 0) {
+            pinPoint.style.setProperty('top', window.scrollY + 'px');
+        }
+        if(rectPin.left + pinPoint.offsetWidth > window.innerWidth) {
+            pinPoint.style.setProperty('left', window.scrollX + window.innerWidth - pinPoint.offsetWidth + 5 + 'px');
+        }
+        if(rectPin.top + pinPoint.offsetHeight + 5 > window.innerHeight) {
+            pinPoint.style.setProperty('top', window.scrollY + window.innerHeight - pinPoint.offsetHeight + 5 + 'px');
+        }
+        if(rectPin.left < 0) {
+            pinPoint.style.setProperty('left', window.scrollX + 'px');
+        }
+        // socket.emit('planet position', { 
+        //     planet: planet,
+        //     x: rectPlanet.left + window.scrollX,
+        //     y: rectPlanet.top + window.scrollY
+        // });
+    });
+}  

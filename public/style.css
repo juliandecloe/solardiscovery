@@ -32,7 +32,22 @@ header {
 
 .planet {
     position: absolute;
+    z-index: -2;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pinpoint {
+    position: absolute;
     z-index: -1;
+    font-weight: 800;
 }
 
 h1 {

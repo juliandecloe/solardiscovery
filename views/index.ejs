@@ -9,7 +9,7 @@
 <main>
     <% data.forEach(asset => { %>
     <img class="planet" id="<%= asset.englishName %>" src="img/planets/<%= asset.englishName %>.svg">
-    <div id="<%= asset.englishName %>">
+    <div class="pinpoint" id="<%= asset.englishName %>">
         <img src="img/planets/<%= asset.englishName %>.svg">
         <h3><%= asset.englishName %></h3>
     </div>
