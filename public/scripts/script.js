@@ -58,7 +58,12 @@ socket.on('new user', user => {
         <img class="rocket" src="img/rocket.gif" alt="A cool black with red rocket flying through space">
     </section>
     `);
-    document.querySelectorAll('.rocketWrap').forEach(rocket => rocket.style.setProperty('display', 'block'));
+
+    setInterval(() => {
+        planetPinPointer();
+    }, 10)
+
+    document.querySelectorAll('.rocketWrap').forEach(rocket => rocket.style.setProperty('display', 'flex'));
 
     const earthElement = document.querySelector('.planet#Earth');
     window.scrollTo(earthElement.offsetLeft + (earthElement.offsetWidth / 4), earthElement.offsetTop + (earthElement.offsetHeight / 2));
@@ -139,10 +144,6 @@ socket.on('new user', user => {
         document.querySelector(`#${user.id}`).remove()
     });
 });
-
-setInterval(() => {
-    planetPinPointer();
-}, 10)
 
 function planetPinPointer() {
     planetData.forEach(asset => {  

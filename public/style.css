@@ -15,7 +15,13 @@ body {
 }
 
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    z-index: 999;
     display: none;
+    background: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0,0,0,0.5));
 }
 
 .startmenu {
@@ -75,10 +81,11 @@ li {
 
 .rocketWrap {
     position: absolute;
-    width: 10rem;
     height: 15rem;
     z-index: 999;
     display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 h3 {
@@ -95,13 +102,6 @@ h3 {
 
 .rocket {
     width: 10rem;
-}
-
-header {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 999;
 }
 
 main {
