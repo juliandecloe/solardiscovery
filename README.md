@@ -5,6 +5,9 @@
 ## Table of Contents
 - [Concept](#concept)
 - [API](#api)
+- [Features](#features)
+- [Real Time Events](#real-time-events)
+- [Data Life Cycle](#data-life-cycle)
 
 ## Concept
 Isn't space awesome? Well I think it is. That is why I made a multiplayer game where you can fly in space with your own rocket and discover planets. The solar system in this game is a real scale model of our solar system using an API that gives data about every planet and all of there moons.
