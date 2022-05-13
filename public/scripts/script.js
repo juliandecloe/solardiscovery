@@ -25,10 +25,6 @@ function generateWorld(data) {
         sunElement.style.setProperty('left', (document.body.offsetWidth / 2) - (sunElement.offsetWidth / 2) + 'px');
         let xOrigin = planet.offsetLeft - (sunElement.offsetLeft + sunElement.offsetWidth / 2);
         let yOrigin = planet.offsetTop - (sunElement.offsetTop + sunElement.offsetHeight / 2);
-        // socket.on('planet position', planet => {
-        //     planet.planet.style.setProperty('left', planet.x + 'px');
-        //     planet.planet.style.setProperty('top', planet.y + 'px');
-        // })
         planet.style.setProperty('transform-origin', xOrigin + 'px ' + yOrigin + 'px');
         planet.style.setProperty('animation', `rotate ${asset.sideralOrbit * 1000}s linear infinite`);
     });
@@ -165,10 +161,5 @@ function planetPinPointer() {
         if(rectPin.left < 1) {
             pinPoint.style.setProperty('left', window.scrollX + 'px');
         }
-        // socket.emit('planet position', { 
-        //     planet: planet,
-        //     x: rectPlanet.left + window.scrollX,
-        //     y: rectPlanet.top + window.scrollY
-        // });
     });
 }  

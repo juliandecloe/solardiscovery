@@ -75,6 +75,61 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 ### Bug fixes I want to do
 - [x] Pinpoints move kind of buggy (the faster you go, the more they bug) *UPDATE: it is a little bit better now (but still not optimal)*
 - [ ] Movement and rotation of other players is lagging
+- [ ] Sometimes no rocket is shown when joining with username
+- [ ] If user is on start menu and a new user joins, the rocket of the new user is in front of form 
 - [ ] Just refactoring my code, client side javascript is kind of messy
+
+## Real Time Events
+
+### Connection
+When connecting to the server an array of every user online is rendered in ejs. Also the position of every users rocket is sent and kept updated.
+```
+io.on('connection', function (socket) {
+    socket.emit('data', newData);
+    socket.on('new user', username => {
+        let object = {username: username, id: socket.id};
+        userList.push(object);
+        io.emit("new user", object);
+    })
+    socket.on('position', pos => {
+        io.emit("position", pos);
+    })
+    socket.on('disconnect', () => {
+        io.emit('user left', {id: socket.id})
+        userList = userList.filter(user => user.id !== socket.id );
+    })
+});
+```
+
+### New user
+If a user puts in a username and submits the form, the name of the user is sent to the server.
+```
+userForm.addEventListener('submit', e => {
+    if (usernameInput.length > 0) {
+        socket.emit('new user', usernameInput);
+    }
+});
+```
+The server pushes the username and the socket id of the client into an array and sends the object back to every client.
+```
+socket.on('new user', username => {
+    let object = {username: username, id: socket.id};
+    userList.push(object);
+    io.emit("new user", object);
+})
+```
+
+### Disconnect
+When a user disconnects from the server the user gets removed from the users array and client side being removed for every client.
+```
+socket.on('disconnect', () => {
+    io.emit('user left', {id: socket.id})
+    userList = userList.filter(user => user.id !== socket.id );
+})
+
+socket.on('user left', user => {
+    document.querySelector(`#${user.id}`).remove()
+});
+```
 
 
