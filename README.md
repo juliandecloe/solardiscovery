@@ -132,4 +132,8 @@ socket.on('user left', user => {
 });
 ```
 
+## Data Life Cycle
+
+![Data Life Cycle](readme-images/life-cycle.png)
+
 
