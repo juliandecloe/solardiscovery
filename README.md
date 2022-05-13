@@ -73,7 +73,7 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 - [ ] Less consistent stars background
 
 ### Bug fixes I want to do
-- [ ] Pinpoints move kind of buggy (the faster you go, the more they bug)
+- [x] Pinpoints move kind of buggy (the faster you go, the more they bug) *UPDATE: it is a little bit better now (but still not optimal)*
 - [ ] Movement and rotation of other players is lagging
 - [ ] Just refactoring my code, client side javascript is kind of messy
 

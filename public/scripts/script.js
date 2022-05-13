@@ -153,7 +153,7 @@ function planetPinPointer() {
         pinPoint.style.setProperty('left', rectPlanet.left + window.scrollX + planet.offsetWidth / 2 + 'px');
         pinPoint.style.setProperty('top', rectPlanet.top + window.scrollY + planet.offsetHeight / 2 + 'px');
         let rectPin = pinPoint.getBoundingClientRect();
-        if(rectPin.top < 0) {
+        if(rectPin.top < 1) {
             pinPoint.style.setProperty('top', window.scrollY + 'px');
         }
         if(rectPin.left + pinPoint.offsetWidth > window.innerWidth) {
@@ -162,7 +162,7 @@ function planetPinPointer() {
         if(rectPin.top + pinPoint.offsetHeight + 5 > window.innerHeight) {
             pinPoint.style.setProperty('top', window.scrollY + window.innerHeight - pinPoint.offsetHeight + 5 + 'px');
         }
-        if(rectPin.left < 0) {
+        if(rectPin.left < 1) {
             pinPoint.style.setProperty('left', window.scrollX + 'px');
         }
         // socket.emit('planet position', { 
