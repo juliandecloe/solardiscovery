@@ -1,9 +1,10 @@
 ![header of Solar Discovery](readme-images/header.png)
 
-# Real-Time Web @cmda-minor-web 2021 - 2022
+# Solar Discovery
 
 ## Table of Contents
-
+- [Concept](#concept)
+- [API](#api)
 
 ## Concept
 Isn't space awesome? Well I think it is. That is why I made a multiplayer game where you can fly in space with your own rocket and discover planets. The solar system in this game is a real scale model of our solar system using an API that gives data about every planet and all of there moons.
@@ -13,7 +14,7 @@ Isn't space awesome? Well I think it is. That is why I made a multiplayer game w
 ## API
 The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is a French API. Luckely they have an English page so I could still understand how to use it. This API can be called using [](https://api.le-systeme-solaire.net/rest/bodies/). It is a really simple API.
 
-**Available data**
+### Available data
 | #  | Name            | Type       | Content                                                                              |
 |----|-----------------|------------|--------------------------------------------------------------------------------------|
 | 1  | id              | string     | Id of body in the API.                                                               |
@@ -48,3 +49,32 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 | 30 | argPeriapsis    | decimal    | Argument of perihelion in degree.                                                    |
 | 31 | longAscNode     | decimal    | Longitude of ascending node in degree.                                               |
 | 32 | bodyType        | string     | The body type : Star, Planet, Dwarf Planet, Asteroid, Comet or Moon.                 |
+
+## Features
+
+### Current Features
+- [x] Create username
+- [x] Move rocket by mouse (mouse further from rocket means faster!)
+- [x] Toggle movement by pressing `Space`
+- [x] Rotate rocket to mouse position
+- [x] Coördinates of rocket (top left of screen)
+- [x] Planets are positioned using the API for a real scale model of our solar system (using **perihelion**)
+- [x] Planets orbit around the sun using `transform: rotate()` (using **sideralOrbit**)
+- [x] Pinpoints for every planet so you can always find every planet
+- [x] Multiple users can join.
+- [x] Updating position and rotation of every rocket to every client
+
+### Future Features
+- [ ] Updating position of every planet to every client (every client has their own planet rotation. Info needs to be send using sockets)
+- [ ] Changing the "lightspeed" of your rocket so you can travel faster and slower
+- [ ] Create your own rocket
+- [ ] Fire of rocket only appears when you actually fly
+- [ ] Adding aliens, meteor showers, satellites and maybe the Tesla car in space?
+- [ ] Less consistent stars background
+
+### Bug fixes I want to do
+- [ ] Pinpoints move kind of buggy (the faster you go, the more they bug)
+- [ ] Movement and rotation of other players is lagging
+- [ ] Just refactoring my code, client side javascript is kind of messy
+
+
