@@ -64,7 +64,7 @@ socket.on('new user', user => {
     const earthElement = document.querySelector('.planet#Earth');
     window.scrollTo(earthElement.offsetLeft + (earthElement.offsetWidth / 4), earthElement.offsetTop + (earthElement.offsetHeight / 2));
 
-    const rocketWrap = document.querySelector(`#${socket.id}`);
+    const rocketWrap = document.querySelector(`[id='${socket.id}']`);
     rocketWrap.style.setProperty('left', window.scrollX + (window.innerWidth / 2) - (rocketWrap.offsetWidth / 2) + 'px');
     rocketWrap.style.setProperty('top', window.scrollY + (window.innerHeight / 2) - (rocketWrap.offsetHeight / 2) + 'px');
 
@@ -75,7 +75,7 @@ socket.on('new user', user => {
 
     //===== ROTATE ROCKET =====//
 
-    const rocketImg = document.querySelector('#' + user.id + ' .rocket');
+    const rocketImg = document.querySelector(`[id='${user.id}'] .rocket`);
     let rect = rocketImg.getBoundingClientRect();
     let boxCenter = {
         x: rect.left + rect.width / 2,
