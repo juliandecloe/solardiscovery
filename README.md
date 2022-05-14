@@ -68,7 +68,7 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 - [x] Updating position and rotation of every rocket to every client
 
 ### Future Features
-- [ ] Updating position of every planet to every client (every client has their own planet rotation. Info needs to be send using sockets)🌍
+- [ ] Updating position of every planet to every client (every client has their own planet rotation. Info needs to be send using sockets) 🌍
 - [ ] A chat in the left bottom corner so people can actually talk to each other 😊
 - [ ] Changing the "lightspeed" of your rocket so you can travel faster and slower ⚡️
 - [ ] Create your own rocket 🚀
@@ -142,3 +142,4 @@ socket.on('user left', user => {
 ![Data Life Cycle](readme-images/life-cycle.png)
 
 
+> Fun fact: the port used for this site is the year in which the first person ever went into space!
