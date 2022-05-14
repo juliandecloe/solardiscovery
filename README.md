@@ -142,4 +142,4 @@ socket.on('user left', user => {
 ![Data Life Cycle](readme-images/life-cycle.png)
 
 
-> Fun fact: the port used for this site is the year in which the first person ever went into space!
+> _Fun fact: the port used for this site is the year in which the first person ever went into space!_
