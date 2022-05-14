@@ -1,5 +1,5 @@
 let socket = io();
-let planetData;
+let planetData, sunElement;
 
 socket.on('data', data => {
     planetData = data;
@@ -21,12 +21,8 @@ function generateWorld(data) {
         let planet = document.querySelector(`.planet#${asset.englishName}`)
         planet.style.setProperty('left', (document.body.offsetWidth / 2) + (data[0].meanRadius / 4) + (asset.perihelion / 1000) + 'px');
         planet.style.setProperty('width', (asset.meanRadius / 2) + 'px');
-        const sunElement = document.querySelector('.planet#Sun');
+        sunElement = document.querySelector('.planet#Sun');
         sunElement.style.setProperty('left', (document.body.offsetWidth / 2) - (sunElement.offsetWidth / 2) + 'px');
-        let xOrigin = planet.offsetLeft - (sunElement.offsetLeft + sunElement.offsetWidth / 2);
-        let yOrigin = planet.offsetTop - (sunElement.offsetTop + sunElement.offsetHeight / 2);
-        planet.style.setProperty('transform-origin', xOrigin + 'px ' + yOrigin + 'px');
-        planet.style.setProperty('animation', `rotate ${asset.sideralOrbit * 1000}s linear infinite`);
     });
 }
 
@@ -49,11 +45,36 @@ userForm.addEventListener('submit', e => {
 
 socket.on('new user', user => {
     document.querySelector('main').insertAdjacentHTML('beforeend', `
-    <section id="${user.id}" class="rocketWrap">
-        <h3>${user.username}</h3>
+    <section id="${user.user.id}" class="rocketWrap">
+        <h3>${user.user.username}</h3>
         <img class="rocket" src="img/rocket.gif" alt="A cool black with red rocket flying through space">
     </section>
     `);
+
+    planetData.forEach(asset => {
+        let planet = document.querySelector(`.planet#${asset.englishName}`);
+        let rectPlanet = planet.getBoundingClientRect();
+        if (user.users[0].id === socket.id) {
+            socket.emit('planet position', {
+                planet: asset.englishName,
+                x: rectPlanet.left + window.scrollX,
+                y: rectPlanet.top + window.scrollY
+            });
+        }
+
+        socket.on('planet position', planet => {
+            if (user.users.length > 1 && socket.id === user.users[user.users.length - 1].id) { 
+                let planetEl = document.querySelector(`.planet#${planet.planet}`);
+                planetEl.style.setProperty('left', planet.x + 'px');
+                planetEl.style.setProperty('top', planet.y + 'px');
+            }
+        })
+
+        let xOrigin = planet.offsetLeft - (sunElement.offsetLeft + sunElement.offsetWidth / 2);
+        let yOrigin = planet.offsetTop - (sunElement.offsetTop + sunElement.offsetHeight / 2);
+        planet.style.setProperty('transform-origin', xOrigin + 'px ' + yOrigin + 'px');
+        planet.style.setProperty('animation', `rotate ${asset.sideralOrbit * 1000}s linear infinite`);
+    })
 
     setInterval(() => {
         planetPinPointer();
@@ -75,7 +96,7 @@ socket.on('new user', user => {
 
     //===== ROTATE ROCKET =====//
 
-    const rocketImg = document.querySelector(`[id='${user.id}'] .rocket`);
+    const rocketImg = document.querySelector(`[id='${user.user.id}'] .rocket`);
     let rect = rocketImg.getBoundingClientRect();
     let boxCenter = {
         x: rect.left + rect.width / 2,
@@ -120,46 +141,46 @@ socket.on('new user', user => {
         }
     });
     setInterval(() => {
-        if(document.querySelectorAll('.rocketWrap').length > 1) {
+        if (document.querySelectorAll('.rocketWrap').length > 1) {
             socket.emit("position", {
-                id: user.id,
-                x: document.querySelector('#' + user.id).offsetLeft,
-                y: document.querySelector('#' + user.id).offsetTop,
+                id: user.user.id,
+                x: document.querySelector(`[id='${user.user.id}']`).offsetLeft,
+                y: document.querySelector(`[id='${user.user.id}']`).offsetTop,
                 rotate: angle
             });
             socket.on('position', pos => {
                 if (pos.id !== socket.id) {
-                    document.querySelector('#' + pos.id).style.setProperty('left', pos.x + 'px');
-                    document.querySelector('#' + pos.id).style.setProperty('top', pos.y + 'px');
-                    document.querySelector(`#${pos.id} .rocket`).style.setProperty('transform', `rotate(${pos.rotate}deg)`);
+                    document.querySelector(`[id='${pos.id}']`).style.setProperty('left', pos.x + 'px');
+                    document.querySelector(`[id='${pos.id}']`).style.setProperty('top', pos.y + 'px');
+                    document.querySelector(`[id='${pos.id}'] .rocket`).style.setProperty('transform', `rotate(${pos.rotate}deg)`);
                 }
             });
         }
     }, 100);
-    socket.on('user left', user => {
-        document.querySelector(`#${user.id}`).remove()
+    socket.on('user left', olduser => {
+        document.querySelector(`[id='${olduser.id}']`).remove();
     });
 });
 
 function planetPinPointer() {
-    planetData.forEach(asset => {  
+    planetData.forEach(asset => {
         let pinPoint = document.querySelector('.pinpoint#' + asset.englishName);
         let planet = document.querySelector(`.planet#${asset.englishName}`);
         let rectPlanet = planet.getBoundingClientRect();
         pinPoint.style.setProperty('left', rectPlanet.left + window.scrollX + planet.offsetWidth / 2 + 'px');
         pinPoint.style.setProperty('top', rectPlanet.top + window.scrollY + planet.offsetHeight / 2 + 'px');
         let rectPin = pinPoint.getBoundingClientRect();
-        if(rectPin.top < 1) {
+        if (rectPin.top < 1) {
             pinPoint.style.setProperty('top', window.scrollY + 'px');
         }
-        if(rectPin.left + pinPoint.offsetWidth > window.innerWidth) {
+        if (rectPin.left + pinPoint.offsetWidth > window.innerWidth) {
             pinPoint.style.setProperty('left', window.scrollX + window.innerWidth - pinPoint.offsetWidth + 5 + 'px');
         }
-        if(rectPin.top + pinPoint.offsetHeight + 5 > window.innerHeight) {
+        if (rectPin.top + pinPoint.offsetHeight + 5 > window.innerHeight) {
             pinPoint.style.setProperty('top', window.scrollY + window.innerHeight - pinPoint.offsetHeight + 5 + 'px');
         }
-        if(rectPin.left < 1) {
+        if (rectPin.left < 1) {
             pinPoint.style.setProperty('left', window.scrollX + 'px');
         }
     });
-}  
+}

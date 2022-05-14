@@ -40,15 +40,18 @@ io.on('connection', function (socket) {
     socket.on('new user', username => {
         let object = {username: username, id: socket.id};
         userList.push(object);
-        io.emit("new user", object);
-    })
+        io.emit("new user", {user: object, users: userList});
+        socket.on('planet position', planet => {
+            io.emit("planet position", planet);
+        });
+    });
     socket.on('position', pos => {
         io.emit("position", pos);
-    })
+    });
     socket.on('disconnect', () => {
         io.emit('user left', {id: socket.id})
         userList = userList.filter(user => user.id !== socket.id );
-    })
+    });
 });
 
 http.listen(port, () => {
