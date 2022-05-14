@@ -68,13 +68,14 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 - [x] Updating position and rotation of every rocket to every client
 
 ### Future Features
-- [ ] Updating position of every planet to every client (every client has their own planet rotation. Info needs to be send using sockets)
-- [ ] A chat in the left bottom corner so people can actually talk to each other :)
-- [ ] Changing the "lightspeed" of your rocket so you can travel faster and slower
-- [ ] Create your own rocket
-- [ ] Fire of rocket only appears when you actually fly
-- [ ] Adding aliens, meteor showers, satellites and maybe the Tesla car in space?
-- [ ] Less consistent stars background
+- [ ] Updating position of every planet to every client (every client has their own planet rotation. Info needs to be send using sockets)🌍
+- [ ] A chat in the left bottom corner so people can actually talk to each other 😊
+- [ ] Changing the "lightspeed" of your rocket so you can travel faster and slower ⚡️
+- [ ] Create your own rocket 🚀
+- [ ] Fire of rocket only appears when you actually fly 🔥
+- [ ] Adding aliens, meteor showers, satellites and maybe the Tesla car in space? 👽 ☄️ 🛰
+- [ ] Less consistent stars background ✨
+- [ ] Add moons to the planets 🌙
 
 ### Bug fixes I want to do
 - [x] Pinpoints move kind of buggy (the faster you go, the more they bug) *UPDATE: it is a little bit better now (but still not optimal)*
