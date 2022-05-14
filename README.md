@@ -69,6 +69,7 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 
 ### Future Features
 - [ ] Updating position of every planet to every client (every client has their own planet rotation. Info needs to be send using sockets)
+- [ ] A chat in the left bottom corner so people can actually talk to each other :)
 - [ ] Changing the "lightspeed" of your rocket so you can travel faster and slower
 - [ ] Create your own rocket
 - [ ] Fire of rocket only appears when you actually fly
