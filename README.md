@@ -53,6 +53,15 @@ The [L'OpenData du Système Solaire](https://api.le-systeme-solaire.net/en/) is 
 | 31 | longAscNode     | decimal    | Longitude of ascending node in degree.                                               |
 | 32 | bodyType        | string     | The body type : Star, Planet, Dwarf Planet, Asteroid, Comet or Moon.                 |
 
+### Used Data
+**englishName** I use the English name of every planet to give every image an `id` for giving every planet the right width and distance from the sun.
+**isPlanet** I use the isPlanet `boolean` to check if every item is a planet so I could filter the moons out of the array.
+**perihelion** I use the perihelion to calculate the distance between every planet and the sun so I could position every planet using `element.style.setProperty('left', ...)`.
+**meanRadius** Used to calculate the size of every planet so I could set every the width using `element.style.setProperty('width', ...)`.
+**sideralOrbit** Used to calculate the speed of every planets rotation around the sun to set the `element.style.setProperty('transform', 'rotate(...deg')`.
+
+*Sadly this API did not include any images at all, but luckely two years ago I remade every planet from our solar system in illustrator. So I placed these images in the images folder and gave the files the name of every **englishName** to create images using the API in ejs like so: `<img class="planet" id="<%= asset.englishName %>" src="img/planets/<%= asset.englishName %>.svg">`*
+
 ## Features
 
 ### Current Features
