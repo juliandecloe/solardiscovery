@@ -4,6 +4,7 @@
   "description": "It's real time web my boy",
   "main": "app.js",
   "scripts": {
+    "build": "app.js",
     "start": "nodemon app.js"
   },
   "repository": {
