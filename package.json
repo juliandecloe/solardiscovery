@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "build": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "vercel-build": ""
   },
   "repository": {
     "type": "git",
